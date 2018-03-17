@@ -4,5 +4,5 @@ output "name" {
 }
 
 output "webhook_urls" {
-  value = ["${github_repository_webhook.repo_webhook.*.url}"]
+  value = ["${github_repository_webhook.repo_webhooks.*.url}"]
 }

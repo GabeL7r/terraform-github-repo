@@ -40,7 +40,7 @@ resource "github_branch_protection" "branches" {
   }
 }
 
-resource "github_repository_deploy_key" "repo_deploy_key" {
+resource "github_repository_deploy_key" "repo_deploy_keys" {
   count      = "${var.deploy_key_enabled ? length(var.deploy_keys) : 0}"
   repository = "${github_repository.repo.name}"
   title      = "${github_repository.repo.name} ${(lookup(var.deploy_keys[count.index], "name"))} key"
@@ -48,14 +48,14 @@ resource "github_repository_deploy_key" "repo_deploy_key" {
   read_only  = "${lookup(var.deploy_keys[count.index], "read_only", var.deploy_key_read_only)}"
 }
 
-resource "github_repository_webhook" "repo_webhook" {
-  count = "${length(var.repo_webhooks)}"
+resource "github_repository_webhook" "repo_webhooks" {
+  count          = "${var.repo_webhook_enabled ? length(var.repo_webhooks) : 0}"
 
   #count      = "${var.repo_webhook_enabled == true ? length(var.repo_webhooks) : 0}"
   repository = "${github_repository.repo.name}"
 
   name   = "${lookup(var.repo_webhooks[count.index], "name", var.repo_webhook_name)}"
-  events = "${compact(concat(var.repo_webhook_events, split(",", lookup(var.protected_branches[count.index], "events", ""))))}"
+  events = "${compact(concat(var.repo_webhook_events, split(",", lookup(var.repo_webhooks[count.index], "events", ""))))}"
 
   configuration {
     url          = "${lookup(var.repo_webhooks[count.index], "url")}"
