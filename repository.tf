@@ -12,7 +12,6 @@ resource "github_repository" "repo" {
   auto_init          = "${var.auto_init}"
   gitignore_template = "${var.gitignore_template}"
   license_template   = "${var.license_template}"
-  default_branch     = "${var.default_branch}"
 }
 
 resource "github_branch_protection" "branches" {

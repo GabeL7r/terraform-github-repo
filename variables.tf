@@ -45,10 +45,6 @@ variable "license_template" {
   default = ""
 }
 
-variable "default_branch" {
-  default = "master"
-}
-
 #--------------------------------------------------------------
 # Branch Protection Variables
 #--------------------------------------------------------------

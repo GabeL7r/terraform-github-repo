@@ -113,7 +113,6 @@ module "test_repo" {
 | `auto_init`                         | `false`                  | Init the repository with an initial commit                                                         | No       |
 | `gitignore_template`                | `""`                     | .gitignore [template](gitignore template) to use with repository                                   | No       |
 | `license_template`                  | `""`                     | license [template](license template) to use with repository                                        | No       |
-| `default_branch`                    | `master`                 | Default branch for repository                                                                      | No       |
 | `protected_branches_enabled`        | `true`                   | Are branch protections enabled                                                                     | No       |
 | `protected_branches`                | `[{branch = "master"}]`  | Array of maps declaring branch to protect and specific overrides                                   | No       |
 | `enforce_admins`                    | `true`                   | Default value for enforce admins unless overriden by protected_branches                            | No       |
