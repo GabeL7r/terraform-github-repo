@@ -74,7 +74,7 @@ variable "required_status_checks_strict" {
 
 variable "required_status_checks_contexts" {
   type    = "list"
-  default = []
+  default = ["default"]
 }
 
 variable "dismiss_stale_reviews" {
