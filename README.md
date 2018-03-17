@@ -174,7 +174,8 @@ module "test_repo" {
 | `key`                               | `module.deploy_key`                  | Path to key    (e.g. `${file(~/.ssh/id_rsa.pub)}`)       | No       |
 | `read_only`                         | `module.deploy_key_read_only`        | Key is read only                                         | No       |
 | `events`                            | `module.repo_webhooks_events`        | Events for the webhook to publish                        | No       |
-| `configuration`                     | `module.repo_webhooks_configuration` | Space separated list of custom configuration             | No       |
+| `configuration_keys`                | `""`                                 | Space separated list of custom configuration keys        | No       |
+| `configuration_values`              | `""`                                 | Space separated list of custom configuration values      | No       |
 
 ## Labels
 |  Name                               |  Default                 |  Description                                                    | Required |
