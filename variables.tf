@@ -155,6 +155,11 @@ variable "repo_webhook_content_type" {
   default = "json"
 }
 
+variable "repo_webhook_configuration" {
+  type = "map"
+  default = {}
+}
+
 variable "repo_webhook_insecure_ssl" {
   default = "false"
 }

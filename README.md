@@ -135,6 +135,7 @@ module "test_repo" {
 | `repo_webhook_events`               | `["push"]`               | Default [events](webhook events) for webhooks unless overriden (see below)                         | No       |
 | `repo_webhook_content_type`         | `"json"`                 | Default [content_type](content type) for webhooks unless overriden (see below)                     | No       |
 | `repo_webhook_insecure_ssl`         | `false`                  | Default insecure ssl value unless overriden                                                        | No       |
+| `repo_webhook_configuration`        | `{}`                     | Default webhook configuration value unless overriden                                               | No       |
 | `repo_webhook_active`               | `true`                   | Default value if webhook is active unless overriden                                                | No       |
 | `pull_collaborators`                | `[]`                     | List of users with pull access                                                                     | No       |
 | `push_collaborators`                | `[]`                     | List of users with push access                                                                     | No       |
@@ -167,11 +168,13 @@ module "test_repo" {
 | `read_only`                         | `module.deploy_key_read_only`   | Key is read only                                         | No       |
 
 ## Webhooks
-|  Name                               |  Default                        |  Description                                             | Required |
-|:------------------------------------|:-------------------------------:|:---------------------------------------------------------|:--------:|
-| `name`                              | ``                              | Name of key    (e.g. `circleci`)                         | Yes      |
-| `key`                               | `module.deploy_key`             | Path to key    (e.g. `${file(~/.ssh/id_rsa.pub)}`)       | No       |
-| `read_only`                         | `module.deploy_key_read_only`   | Key is read only                                         | No       |
+|  Name                               |  Default                             |  Description                                             | Required |
+|:------------------------------------|:------------------------------------:|:---------------------------------------------------------|:--------:|
+| `name`                              | ``                                   | Name of key    (e.g. `circleci`)                         | Yes      |
+| `key`                               | `module.deploy_key`                  | Path to key    (e.g. `${file(~/.ssh/id_rsa.pub)}`)       | No       |
+| `read_only`                         | `module.deploy_key_read_only`        | Key is read only                                         | No       |
+| `events`                            | `module.repo_webhooks_events`        | Events for the webhook to publish                        | No       |
+| `configuration`                     | `module.repo_webhooks_configuration` | Space separated list of custom configuration             | No       |
 
 ## Labels
 |  Name                               |  Default                 |  Description                                                    | Required |

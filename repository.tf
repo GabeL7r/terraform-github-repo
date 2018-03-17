@@ -57,12 +57,11 @@ resource "github_repository_webhook" "repo_webhooks" {
   name   = "${lookup(var.repo_webhooks[count.index], "name", var.repo_webhook_name)}"
   events = "${compact(concat(var.repo_webhook_events, split(",", lookup(var.repo_webhooks[count.index], "events", ""))))}"
 
-  configuration {
-    url          = "${lookup(var.repo_webhooks[count.index], "url")}"
-    content_type = "${lookup(var.repo_webhooks[count.index], "content_type", var.repo_webhook_content_type)}"
-    insecure_ssl = "${lookup(var.repo_webhooks[count.index], "insecure_ssl", var.repo_webhook_insecure_ssl)}"
-    sns_topic = "test"
-  }
+  configuration = "${merge(map(
+    "url", lookup(var.repo_webhooks[count.index], "url"),
+    "content_type", lookup(var.repo_webhooks[count.index], "content_type", var.repo_webhook_content_type),
+    "insecure_ssl", lookup(var.repo_webhooks[count.index], "insecure_ssl", var.repo_webhook_insecure_ssl)
+    ), var.repo_webhook_configuration, map(split(" ", lookup(var.repo_webhooks[count.index], "configuration", ""))))}"
 
   active = "${lookup(var.repo_webhooks[count.index], "active", var.repo_webhook_active)}"
 }
