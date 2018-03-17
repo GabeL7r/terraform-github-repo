@@ -24,7 +24,8 @@ resource "github_branch_protection" "branches" {
   required_status_checks {
     strict = "${lookup(var.protected_branches[count.index], "strict", var.required_status_checks_strict)}"
 
-    contexts            = "${compact(concat(var.required_status_checks_contexts,split(",", lookup(var.protected_branches[count.index], "contexts", ""))))}"
+    #contexts  = "${compact(concat(var.required_status_checks_contexts,split(",", lookup(var.protected_branches[count.index], "contexts", ""))))}"
+    contexts  = "",", lookup(var.protected_branches[count.index], "contexts", ""))))}"
   }
 
   required_pull_request_reviews {
